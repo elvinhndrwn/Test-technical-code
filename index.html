@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body> 
+	<input type="number" name="input_number" id="input_number" placeholder="Input Angka">
+	<br>
+	<button type="submit" id="generate_segitiga" >generate segitiga</button>
+	<button type="submit" id="ganjil" >generate Bilangan Ganjil</button>
+	<button type="submit" id="prima" >generate Bilangan Prima</button>
+	<br>
+	<br>
+	<h2 id="result">Result: </h2>
+
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#ganjil").on('click', function(e){
+				var angka = $("#input_number").val();
+
+				$.ajax({
+					type : "GET",
+					headers: {
+						'Access-Control-Allow-Credentials' : true,
+						'Access-Control-Allow-Origin':'*',
+						'Access-Control-Allow-Methods':'POST, GET',
+						'Access-Control-Allow-Headers':'origin, content-type, application/json',
+					},
+					contentType: "application/json; charset=utf-8",
+					url : "http://localhost:8080/ganjil/"+angka ,
+					dataType : "json",
+					crossOrigin : true,
+					success : function (result){
+						$("#result").text("Result: " + result["bilangan"]);
+					}
+				});
+			});
+
+			$("#prima").on('click', function(e){
+				var angka = $("#input_number").val();
+
+				$.ajax({
+					type : "GET",
+					headers: {
+						'Access-Control-Allow-Credentials' : true,
+						'Access-Control-Allow-Origin':'*',
+						'Access-Control-Allow-Methods':'POST, GET',
+						'Access-Control-Allow-Headers':'origin, content-type, application/json',
+					},
+					contentType: "application/json; charset=utf-8",
+					url : "http://localhost:8080/prima/"+angka ,
+					dataType : "json",
+					crossOrigin : true,
+					success : function (result){
+						$("#result").text("Result: " + result["bilangan"]);
+					}
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>
